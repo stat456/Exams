@@ -1,0 +1,281 @@
+---
+title: |
+    | STAT 491: Midterm Exam
+    | Due: March 10 at 11:59 PM
+    | Name:
+output: html_document 
+---
+
+```{r setup, include=FALSE}
+library(knitr)
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Please turn in the exam to D2L and include the R Markdown code, SAS code *and either* a Word or PDF file with output. While the exam is open book, meaning you are free to use any resources from class, this is strictly an individual endeavor and **you should not discuss the problems with anyone outside the course instructor including class members.** The instructor will answer questions related to the data, expectations, and understanding of the exam, but will not fix or troubleshoot broken code.
+
+
+# 1. (36 points OKCupid Data Analysis)
+This question will focus on the OKCupid dataset, which can be accessed using [http://www.math.montana.edu/ahoegh/teaching/stat408/datasets/OKCupid_profiles_clean.csv](http://www.math.montana.edu/ahoegh/teaching/stat408/datasets/OKCupid_profiles_clean.csv). More details on a larger version of this dataset are available at [https://github.com/rudeboybert/JSE_OkCupid/blob/master/okcupid_codebook.txt](https://github.com/rudeboybert/JSE_OkCupid/blob/master/okcupid_codebook.txt).
+
+The goal will be to fit a model for height for the respondents with sex tagged as 'm' or 'f', note these value are self reported and are recorded in inches.
+
+### a. (4 points)
+Describe the dataset, what do the columns and variables mean?
+```{r}
+okc <- read.csv('http://www.math.montana.edu/ahoegh/teaching/stat408/datasets/OKCupid_profiles_clean.csv', stringsAsFactors = F)
+str(okc)
+```
+
+The dataset contains information scraped from publicly available profiles on OkCupid.com.  Each row represents a single user and the following columns are categories about the user and their lifestyle:
+
+- age: age in years
+- body_type: a set of categories for self-reported body type
+- diet: a set of categories to describe eating habits
+- drinks: a set of categories about alcohol habits
+- drugs: a set of categories about drug habits
+- ethnicity: a set of categories for ethnicity, respondents may choose more than one ethnicity
+- height: self-reported height in inches
+- job: a set of categories for employment
+- sex: male or female 
+- smokes: a set of categories about smoking habits
+
+
+### b. (4 points)
+Specify a prior distribution for height for both genders. We are going to fit these models independently, so there should be two different priors here. For full credit, defend your prior choices - that is why are they reasonable?
+
+Given a normal sampling model, priors are necessary for $\mu$ and $\sigma^2$ for both gender groups.
+
+Let $\mu \sim N(71, 12^2)$ and $\sigma^2 \sim Unif(0, 500)$ for males. Similarly for females let $\mu \sim N(67, 12^2)$ and $\sigma^2 \sim Unif(0, 500)$.
+
+The mean height for both genders are centered around what I believe to be average heights in the population with a fairly large variance. Specifically, with the standard deviation of 12, most of the prior mass will be within two feet of my prior means and hence not be very influential.  The upper threshold for the uniform prior is set such that the standard deviation will be at most 22 inches. Given that respondents need to be 18 to have an OK Cupid profile, this seems like a sufficiently large variance term.
+
+### c. (4 points)
+Select and justify a sampling model for this problem. You can use the same sampling model for each gender.
+
+For each gender, a normal sampling model will be used. Specifically, let 
+$$y_{ij} \sim N(\mu_j, \sigma^2_j),$$
+where $y_{ij}$ is the the height of the $i^{th}$ respondent in the $j^{th}$ gender.
+
+### d. (4 points)
+Use JAGS to fit the two posterior distributions. Include your code and for full credit, detail what each line (or chunk) of code is doing and defend your choice for options in the functions.
+
+##### Fit posterior for females first
+
+```{r, jagsfemale}
+## set up data
+library(dplyr)
+female.okc <- okc %>% filter(sex == 'f')
+
+dataList = list(y = female.okc$height, Ntotal = nrow(female.okc), M = 67, S = 12, C = sqrt(500))
+
+## specify model
+modelString = "model {
+  for ( i in 1:Ntotal ) {
+    y[i] ~ dnorm(mu, 1/sigma^2) # sampling model
+  }
+  mu ~ dnorm(M,1/S^2)
+  sigma ~ dunif(0,C)
+} "
+writeLines( modelString, con='FemaleHeight.txt')
+
+## Starting points
+initsList <- function(){
+  # function for initializing starting place of theta
+  # RETURNS: list with random start point for theta
+  return(list(mu = rnorm(1, mean = 67, sd = 12), sigma = runif(1,0,sqrt(500))))
+}
+
+## Run JAGS
+
+library(rjags)
+library(runjags)
+jagsModel <- jags.model( file = "FemaleHeight.txt", data = dataList, 
+                         inits =initsList, n.chains = 3, n.adapt = 1000)
+update(jagsModel, n.iter = 1000)
+num.mcmc <- 10000
+codaSamplesFemale <- coda.samples( jagsModel, variable.names = c('mu', 'sigma'), n.iter = num.mcmc)
+```
+
+##### Fit posterior for males next
+
+```{r, jagsmale}
+## set up data
+library(dplyr)
+male.okc <- okc %>% filter(sex == 'm')
+
+dataList = list(y = male.okc$height, Ntotal = nrow(male.okc), M = 71, S = 12, C = sqrt(500))
+
+## specify model
+modelString = "model {
+  for ( i in 1:Ntotal ) {
+    y[i] ~ dnorm(mu, 1/sigma^2) # sampling model
+  }
+  mu ~ dnorm(M,1/S^2)
+  sigma ~ dunif(0,C)
+} "
+writeLines( modelString, con='MaleHeight.txt')
+
+## Starting points
+initsList <- function(){
+  # function for initializing starting place of theta
+  # RETURNS: list with random start point for theta
+  return(list(mu = rnorm(1, mean = 67, sd = 12), sigma = runif(1,0,sqrt(500))))
+}
+
+## Run JAGS
+
+library(rjags)
+library(runjags)
+jagsModel <- jags.model( file = "FemaleHeight.txt", data = dataList, 
+                         inits =initsList, n.chains = 3, n.adapt = 1000)
+update(jagsModel, n.iter = 1000)
+num.mcmc <- 10000
+codaSamplesMale <- coda.samples( jagsModel, variable.names = c('mu', 'sigma'), n.iter = num.mcmc)
+
+```
+
+
+### e. (4 points)
+Use the `coda` plotting functionality (or equivalent) to summarize your posterior samples. Describe what the figures mean.
+
+```{r, fig.cap = 'Traceplot for female height parameters'}
+par(mfcol=c(1,2))
+traceplot(codaSamplesFemale)
+```
+
+```{r, fig.cap = 'Density plot for female height parameters'}
+par(mfcol=c(1,2))
+traceplot(codaSamplesFemale)
+```
+
+Most of the posterior mass for mean female height is between 65.03 and 65.15 inches. Similarly the posterior mass for the standard deviation of female height is between `r as.numeric(HPDinterval(codaSamplesFemale)[[1]]['sigma',])`
+
+```{r, fig.cap = 'Traceplot for female height parameters'}
+par(mfcol=c(1,2))
+traceplot(codaSamplesMale)
+```
+
+```{r, fig.cap = 'Density plot for female height parameters'}
+par(mfcol=c(1,2))
+traceplot(codaSamplesMale)
+```
+
+Most of the posterior mass for mean male height is between `r as.numeric(HPDinterval(codaSamplesMale)[[1]]['mu',][1])` and `r as.numeric(HPDinterval(codaSamplesMale)[[1]]['mu',][2])` inches. Similarly the posterior mass for the standard deviation of female height is between `r  as.numeric(HPDinterval(codaSamplesMale)[[1]]['sigma',])`
+
+### f. (4 points)
+Print and interpret the posterior HDIs for the mean height for male and female users.
+
+```{r}
+HPDinterval(codaSamplesFemale)
+HPDinterval(codaSamplesMale)
+```
+
+summary omitted
+
+### g. (4 points)
+Summarize the posterior for heights of female and male OKCupid users. This should be a written summary without statistical lingo.
+
+The average female height is between `r as.numeric(HPDinterval(codaSamplesFemale)[[1]]['mu',][1])` and `r as.numeric(HPDinterval(codaSamplesFemale)[[1]]['mu',][2])` inches with 95% probability. There is still a fair amount of variability in heights of individuals as the posterior mass for the standard deviation is between `r as.numeric(HPDinterval(codaSamplesFemale)[[1]]['sigma',][1])` and `r as.numeric(HPDinterval(codaSamplesFemale)[[1]]['sigma',][2])`. The general interpretation is that 95% of the heights of individual respondents would be within 2 standard deviations of the mean.
+
+male omitted.
+
+### h. (4 points)
+Use the posterior samples to compute the probability that the mean height for men is taller than 68 inches. Do the same for female heights.
+
+This can be accomplished using the posterior samples. Specifically, the estimation uses the proportion of posterior samples above the specified height.
+
+```{r}
+mean(c(codaSamplesFemale[[1]][,'mu'],codaSamplesFemale[[2]][,'mu'],codaSamplesFemale[[3]][,'mu']) > 68)
+mean(c(codaSamplesMale[[1]][,'mu'],codaSamplesMale[[2]][,'mu'],codaSamplesMale[[3]][,'mu']) > 68)
+
+```
+
+
+### i. (4 points)
+Using what you have learned from this dataset, compute the probability that a randomly selected female will be taller than a randomly selected male.
+
+This uses the idea of posterior predictive distributions.
+
+```{r}
+pred.male <- rnorm(num.mcmc * 3, mean = c(codaSamplesMale[[1]][,'mu'],codaSamplesMale[[2]][,'mu'],codaSamplesMale[[3]][,'mu']), sd =c(codaSamplesMale[[1]][,'sigma'],codaSamplesMale[[2]][,'sigma'],codaSamplesMale[[3]][,'sigma']) )
+pred.female <- rnorm(num.mcmc * 3, mean = c(codaSamplesFemale[[1]][,'mu'],codaSamplesFemale[[2]][,'mu'],codaSamplesFemale[[3]][,'mu']), sd =c(codaSamplesFemale[[1]][,'sigma'],codaSamplesFemale[[2]][,'sigma'],codaSamplesFemale[[3]][,'sigma']) )
+female.taller <- mean(pred.female > pred.male)
+
+```
+
+Based on these calculations the probability that a randomly selected female is taller than a randomly selected female is `r round(female.taller, 3)`.
+
+# 2. (29 points - Basketball Model)
+Suppose you have been hired as a statistical consultant by a NBA expansion team that will be moving to Big Sky, MT. Your goal is to help identify basketball players to bring to Montana. 
+
+Specifically, the team has one more spot to fill and is looking to add a free throw shooting specialist. Here are two options:
+
+- Bugs Bunny. Bugs Bunny is a shooting guard that was 2 for 7 on free throws last year.
+- Tasmanian Devil. Tasmanian Devil is a center that was 25 for 40 on free throws last year.
+
+### a. 
+Use uniform priors, Beta(1,1), to model the free throw shooting for Bugs Bunny and Tasmanian Devil.
+
+#### a1 (6 points)
+Plot and summarize the posterior distribution for each player.
+
+```{r}
+par(mfcol=c(2,1))
+x <- seq(0,1, by=.01)
+y.max <- max(dbeta(x,26,16))
+plot(x,dbeta(x,3,8), main='Bugs Bunny Posterior', type='l', ylim=c(0,y.max),ylab=expression(paste('p(',theta,'|y)')), xlab = expression(theta))
+plot(x,dbeta(x,26,16), main='Tasmanian Devel Posterior', type='l', ylim=c(0,y.max),ylab=expression(paste('p(',theta,'|y)')), xlab = expression(theta))
+```
+
+
+#### a2 (4 points)
+Using the posteriors above, compute the probability that Bugs Bunny has a higher shooting percentage ($\theta$ parameter in the binary setting).
+
+```{r}
+num.sims <- 5000
+bugs <- rbeta(num.sims, 3, 8)
+td <- rbeta(num.sims, 26, 16)
+bugs.better <- mean(bugs > td)
+```
+In this setting, the probability that Bugs Bunny has a higher shooting percentage is `r bugs.better`
+
+#### a3 (2 points)
+If both players had 25 free throws, who do you think will make more free throws? Why?
+
+I'd think that Tasmanian Devil would have a better outcome, but with 25 free throws it would be possible that Bugs Bunny does better, but highly unlikely.
+
+
+### b. 
+Now assume that we know that shooting guards, like Bugs Bunny, tend to make about 80 percent of free throws and centers, like Tasmanian Devel, tend to make about 60 percent of free throws. This information can be imparted by more informative priors: Use Beta(40,10) for Bugs Bunny and Beta(30,20) for Tasmanian Devil as the prior distributions.
+
+#### b1 (6 points)
+Plot and summarize the posterior distribution for each player.
+
+```{r}
+par(mfcol=c(2,1))
+x <- seq(0,1, by=.01)
+y.max <- max(c(dbeta(x,42,17),dbeta(x,55, 35)))
+plot(x,dbeta(x,42,17), main='Bugs Bunny Posterior', type='l', ylim=c(0,y.max),ylab=expression(paste('p(',theta,'|y)')), xlab = expression(theta))
+plot(x,dbeta(x,55,35), main='Tasmanian Devel Posterior', type='l', ylim=c(0,y.max),ylab=expression(paste('p(',theta,'|y)')), xlab = expression(theta))
+```
+#### b2 (4 points)
+Using the posteriors above, compute the probability that Bugs Bunny has a higher shooting percentage ($\theta$ parameter in the binary setting).
+
+```{r}
+num.sims <- 5000
+bugs <- rbeta(num.sims, 42, 17)
+td <- rbeta(num.sims, 55, 35)
+bugs.better <- mean(bugs > td)
+```
+
+In this case, the probabilty that bugs bunny has a higher shooting percentage is `r round(bugs.better, 3)`
+
+#### b3 (2 points)
+If both players had 25 free throws, who do you think will make more free throws? Why?
+
+Now I'd bet on Bugs Bunny making more free throws.
+
+### c. (5 points)
+Reflect on the results from question a and question b.
+
+The prior distribution can be highly influential for the posterior and that is not necessarily good or bad. Rather it depends on how reasonable the prior belief is and how much data is avaiable to change or update the prior beliefs.
