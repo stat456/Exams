@@ -1,0 +1,195 @@
+country,market,commodity,price,time
+Brazil,SÃ£o Paulo,Rice,0.62,May 2020
+Brazil,SÃ£o Paulo,Rice,0.8,May 2019
+Eswatini,Shiselweni,Rice,0.69,May 2020
+Eswatini,Shiselweni,Rice,0.86,May 2019
+Eswatini,National average,Rice,0.7,May 2020
+Eswatini,National average,Rice,0.91,May 2019
+Eswatini,Manzini,Rice,0.71,May 2020
+Eswatini,Manzini,Rice,0.83,May 2019
+Eswatini,Lubombo,Rice,0.69,May 2020
+Eswatini,Lubombo,Rice,1.07,May 2019
+Eswatini,Hhohho,Rice,0.71,May 2020
+Eswatini,Hhohho,Rice,0.86,May 2019
+India,Chennai,Rice,0.7,May 2020
+India,Chennai,Rice,0.47,May 2019
+India,Mumbai,Rice,0.41,May 2020
+India,Mumbai,Rice,0.42,May 2019
+India,New Delhi,Rice,0.46,May 2020
+India,New Delhi,Rice,0.49,May 2019
+India,Patna,Rice,0.4,May 2020
+India,Patna,Rice,0.49,May 2019
+Malawi,Lilongwe,Rice,1.08,May 2020
+Malawi,Lilongwe,Rice,1.2,May 2019
+Mongolia,Ulaanbaatar,Rice,1.3,May 2020
+Mongolia,Ulaanbaatar,Rice,1.32,May 2019
+Mozambique,Maxixe,Rice,0.71,May 2020
+Mozambique,Maxixe,Rice,0.71,May 2019
+Mozambique,Maputo,Rice,0.7,May 2020
+Mozambique,Maputo,Rice,0.55,May 2019
+Mozambique,Manica,Rice,0.73,May 2020
+Mozambique,Manica,Rice,0.47,May 2019
+Mozambique,Gorongosa,Rice,0.73,May 2020
+Mozambique,Gorongosa,Rice,0.79,May 2019
+Mozambique,Chokwe,Rice,0.73,May 2020
+Mozambique,Chokwe,Rice,0.79,May 2019
+Mozambique,Angonia,Rice,0.84,May 2020
+Mozambique,Angonia,Rice,0.79,May 2019
+Mozambique,Montepuez,Rice,0.69,May 2020
+Mozambique,Montepuez,Rice,0.63,May 2019
+Mozambique,Nampula,Rice,1.17,May 2020
+Mozambique,Nampula,Rice,0.75,May 2019
+Namibia,Gobabis,Rice,1.23,May 2020
+Namibia,Gobabis,Rice,1.48,May 2019
+Namibia,Swakopmund,Rice,1.2,May 2020
+Namibia,Swakopmund,Rice,1.52,May 2019
+Namibia,Otjiwarongo,Rice,1.2,May 2020
+Namibia,Otjiwarongo,Rice,1.1,May 2019
+Namibia,Oshakati,Rice,1.59,May 2020
+Namibia,Oshakati,Rice,1.65,May 2019
+Namibia,Mariental,Rice,1.33,May 2020
+Namibia,Mariental,Rice,1.46,May 2019
+Namibia,Keetmanshoop,Rice,1.47,May 2020
+Namibia,Keetmanshoop,Rice,1.52,May 2019
+Namibia,Katima,Rice,1.2,May 2020
+Namibia,Katima,Rice,1.48,May 2019
+Namibia,Windhoek,Rice,1.23,May 2020
+Namibia,Windhoek,Rice,1.39,May 2019
+Zimbabwe,Manicaland,Rice,2.05,May 2020
+Zimbabwe,Manicaland,Rice,1.05,May 2019
+Zimbabwe,Bulawayo,Rice,2.52,May 2020
+Zimbabwe,Bulawayo,Rice,1.04,May 2019
+Zimbabwe,Harare,Rice,1.91,May 2020
+Zimbabwe,Harare,Rice,1.03,May 2019
+Zimbabwe,Mash central,Rice,1.6,May 2020
+Zimbabwe,Mash central,Rice,1.04,May 2019
+Zimbabwe,Mash east,Rice,1.96,May 2020
+Zimbabwe,Mash east,Rice,1,May 2019
+Zimbabwe,Mat south,Rice,2.07,May 2020
+Zimbabwe,Mat south,Rice,0.96,May 2019
+Zimbabwe,Mat north,Rice,2.24,May 2020
+Zimbabwe,Mat north,Rice,1.03,May 2019
+Zimbabwe,Masvingo,Rice,1.8,May 2020
+Zimbabwe,Masvingo,Rice,0.97,May 2019
+Zimbabwe,Mash west,Rice,1.08,May 2020
+Zimbabwe,Mash west,Rice,0.96,May 2019
+Zimbabwe,Midlands,Rice,2.04,May 2020
+Zimbabwe,Midlands,Rice,0.99,May 2019
+Myanmar,Yangon,Rice,0.44,May 2020
+Myanmar,Yangon,Rice,0.37,May 2019
+Bolivia,Santa Cruz,Rice,0.99,May 2020
+Bolivia,Santa Cruz,Rice,0.975,May 2019
+Bangladesh,Dhaka,Rice,0.53,May 2020
+Bangladesh,Dhaka,Rice,0.46,May 2019
+Pakistan,Multan,Rice,0.55,May 2020
+Pakistan,Multan,Rice,0.6,May 2019
+Pakistan,Karachi,Rice,0.58,May 2020
+Pakistan,Karachi,Rice,0.59,May 2019
+Pakistan,Lahore,Rice,0.47,May 2020
+Pakistan,Lahore,Rice,0.51,May 2019
+Pakistan,Quetta,Rice,0.72,May 2020
+Pakistan,Quetta,Rice,0.7,May 2019
+Chile,Santiago,Rice,1.41,May 2020
+Chile,Santiago,Rice,1.63,May 2019
+Chile,Santiago,Rice,1.41,May 2020
+Chile,Santiago,Rice,1.63,May 2019
+Dominican Republic,Santo Domingo,Rice,0.93,May 2020
+Dominican Republic,Santo Domingo,Rice,1,May 2019
+Benin,Cotonou,Rice,0.82,May 2020
+Benin,Cotonou,Rice,0.85,May 2019
+Liberia,Saclepea,Rice,0.6,May 2020
+Liberia,Saclepea,Rice,0.62,May 2019
+Mauritania,Nouakchott,Rice,0.97,May 2020
+Mauritania,Nouakchott,Rice,1.07,May 2019
+Niger,Dosso,Rice,0.83,May 2020
+Niger,Dosso,Rice,0.85,May 2019
+Niger,Agadez,Rice,1,May 2020
+Niger,Agadez,Rice,0.85,May 2019
+Chad,N'Djamena,Rice,0.66,May 2020
+Chad,N'Djamena,Rice,0.72,May 2019
+Cote d'Ivoire,Abidjan,Rice,0.78,May 2020
+Cote d'Ivoire,Abidjan,Rice,0.75,May 2019
+Haiti,Cap Haitien,Rice,1.72,May 2020
+Haiti,Cap Haitien,Rice,1.5,May 2019
+Guinea,Conakry,Rice,0.95,May 2020
+Guinea,Conakry,Rice,1.06,May 2019
+Haiti,Jacmel,Rice,2.65,May 2020
+Haiti,Jacmel,Rice,1.87,May 2019
+Haiti,Hinche,Rice,2.47,May 2020
+Haiti,Hinche,Rice,2.07,May 2019
+Haiti,Jeremie,Rice,2.38,May 2020
+Haiti,Jeremie,Rice,1.94,May 2019
+Haiti,Les Cayes,Rice,2.01,May 2020
+Haiti,Les Cayes,Rice,2.07,May 2019
+Haiti,Port-au-Prince,Rice,2.01,May 2020
+Haiti,Port-au-Prince,Rice,1.72,May 2019
+Sierra Leone,Koinadugu,Rice,0.9,May 2020
+Sierra Leone,Koinadugu,Rice,0.74,May 2019
+Sierra Leone,Kenema,Rice,0.82,May 2020
+Sierra Leone,Kenema,Rice,0.74,May 2019
+Sierra Leone,Kailahun,Rice,1.02,May 2020
+Sierra Leone,Kailahun,Rice,0.72,May 2019
+Sierra Leone,Freetown,Rice,1.11,May 2020
+Sierra Leone,Freetown,Rice,0.77,May 2019
+Sierra Leone,Bo,Rice,1.02,May 2020
+Sierra Leone,Bo,Rice,0.78,May 2019
+Niger,Maradi,Rice,0.81,May 2020
+Niger,Maradi,Rice,0.74,May 2019
+Niger,Tillaberi,Rice,0.86,May 2020
+Niger,Tillaberi,Rice,0.85,May 2019
+Niger,Niamey,Rice,0.83,May 2020
+Niger,Niamey,Rice,0.77,May 2019
+Niger,Zinder,Rice,0.75,May 2020
+Niger,Zinder,Rice,0.77,May 2019
+Somalia,Belet Weyne,Rice,0.63,May 2020
+Somalia,Belet Weyne,Rice,0.49,May 2019
+Somalia,Baidoa,Rice,0.57,May 2020
+Somalia,Baidoa,Rice,0.52,May 2019
+Somalia,Borama,Rice,0.19,May 2020
+Somalia,Borama,Rice,0.15,May 2019
+Somalia,Bossaso,Rice,0.69,May 2020
+Somalia,Bossaso,Rice,0.71,May 2019
+Somalia,Buale,Rice,0.58,May 2020
+Somalia,Buale,Rice,0.62,May 2019
+Somalia,Galkayo,Rice,0.74,May 2020
+Somalia,Galkayo,Rice,0.76,May 2019
+Somalia,Hargeisa,Rice,0.21,May 2020
+Somalia,Hargeisa,Rice,0.19,May 2019
+Somalia,Hudur,Rice,0.63,May 2020
+Somalia,Hudur,Rice,0.68,May 2019
+Somalia,Kismayo,Rice,0.53,May 2020
+Somalia,Kismayo,Rice,0.45,May 2019
+Somalia,Lasanod,Rice,0.77,May 2020
+Somalia,Lasanod,Rice,0.66,May 2019
+Somalia,Mogadishu,Rice,0.4,May 2020
+Somalia,Mogadishu,Rice,0.44,May 2019
+Somalia,Marka,Rice,0.52,May 2020
+Somalia,Marka,Rice,0.55,May 2019
+Togo,Amegnran,Rice,0.91,May 2020
+Togo,Amegnran,Rice,1.02,May 2019
+Togo,Anie,Rice,0.76,May 2020
+Togo,Anie,Rice,0.76,May 2019
+Togo,LomÃ©,Rice,0.75,May 2020
+Togo,LomÃ©,Rice,0.68,May 2019
+Togo,Korbongou,Rice,0.83,May 2020
+Togo,Korbongou,Rice,0.77,May 2019
+Togo,Kara,Rice,0.76,May 2020
+Togo,Kara,Rice,0.77,May 2019
+Togo,CinkassÃ©,Rice,0.76,May 2020
+Togo,CinkassÃ©,Rice,0.8,May 2019
+Cabo Verde,S.Vincente,Rice,0.79,May 2020
+Cabo Verde,S.Vincente,Rice,0.79,May 2019
+Cabo Verde,S.AntÃ£o,Rice,0.85,May 2020
+Cabo Verde,S.AntÃ£o,Rice,0.88,May 2019
+Cabo Verde,Santiago,Rice,0.91,May 2020
+Cabo Verde,Santiago,Rice,0.92,May 2019
+Occupied Palestinian Territory,Gaza Strip,Rice,2.27,May 2020
+Occupied Palestinian Territory,Gaza Strip,Rice,2.2,May 2019
+Angola,Luanda,Rice,1.87,May 2020
+Angola,Luanda,Rice,2.53,May 2019
+Peru,Lima,Rice,0.8,May 2020
+Peru,Lima,Rice,0.8,May 2019
+Occupied Palestinian Territory,West Bank,Rice,4.42,May 2020
+Occupied Palestinian Territory,West Bank,Rice,4.42,May 2019
+Argentina,Greater Buenos Aires,Rice,1.04,May 2020
+Argentina,Greater Buenos Aires,Rice,0.99,May 2019
