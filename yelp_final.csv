@@ -1,0 +1,8 @@
+ID,name,categories,n,fivestars,prop
+2,"""Baja Fresh""",Restaurants;Mexican,6,6,1
+464,"""Smooth Eats""",Juice Bars & Smoothies;Restaurants;Sandwiches;Comfort Food;Specialty Food;Health Markets;Vegetarian;Food,57,49,0.8596491228070176
+291,"""Munch Box""",Breakfast & Brunch;Restaurants,3,2,0.6666666666666666
+96,"""Hikari""",Steakhouses;Restaurants;Japanese;Sushi Bars,615,290,0.4715447154471545
+441,"""StripSteak""",American (New);Cheesesteaks;Restaurants;Steakhouses,1091,498,0.45646196150320806
+450,"""Burger Bar""",Bars;American (Traditional);Burgers;American (New);Restaurants;Nightlife,2440,776,0.3180327868852459
+371,"""Jenni Pho""",Restaurants;Vietnamese,343,76,0.22157434402332363
