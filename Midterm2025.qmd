@@ -1,0 +1,50 @@
+---
+title: "Midterm Exam: 2025"
+format: pdf
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+
+The following dataset contains the average hourly count of bike rentals from the Capital Bike Share in Washington, DC in 2011.
+
+```{r}
+#| message: false
+#| include: false
+library(tidyverse)
+
+hourly_bikes <- read_csv('https://raw.githubusercontent.com/stat456/Exams/refs/heads/main/bikecounts2025.csv')
+```
+
+
+#### 1. (4 pts)
+Assume we want to estimate the average hourly bike rentals for the four seasons. Write out the statistical model to answer this question. 
+
+
+
+#### 2. (4 pts)
+
+State and justify prior distributions for the parameters in this model. For this justification, you should discuss the parameters in the prior distribution (hyperparameters). Plot the prior distributions that you have chosen.
+
+#### 3. (4 pts)
+
+Create a plot that shows the hourly bike rentals by season. Include all data points and note this should mimic the statistical model you've specified in Q1.
+
+
+#### 4. (4 pts)
+Using the priors above fit the model in JAGS. Include a numerical summary of your model output that includes all relevant priors.
+
+
+#### 5.  (4 pts)
+
+Print and interpret an HDI for all model parameters. Include a paragraph detailing the results.
+
+
+#### 6. (4 pts)
+
+Create the posterior distribution for the difference between the average for Fall and Spring. Create a plot of this distribution.
+
+
+#### 7. (4 pts)
+Summarize the results from part d so that your friend who owns a bike shop.
