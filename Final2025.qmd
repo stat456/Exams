@@ -1,0 +1,72 @@
+---
+title: "Final Exam: 2025"
+format: pdf
+editor: source
+editor_options: 
+  chunk_output_type: console
+---
+
+```{r}
+#| include: false
+library(tidyverse)
+library(viridis)
+library(rjags)
+```
+
+This exam will work through the analysis of a dataset collected at SNOTEL sites in Montana. SNOTEL (SNOwpack TELemetry) are a network of weather sites that capture the depth of snow in alpine locations. More information for Montana sites is available at the following link: <https://www.nrcs.usda.gov/montana/snow-survey>.
+
+The `snotel` dataset contains the Snow Water Equivalent (SWE) at a set of sites on April 12th. One inch of water can result in anywhere from about 1 inch to up to 20 inches of snow. So the SNOTEL sites measure snow as SWE, in inches, which is the amount of water in the snow if the snow was melted.
+
+```{r}
+#| message: false
+snotel <- read_csv('https://raw.githubusercontent.com/Stat534/data/refs/heads/main/MT_SWE.csv')
+head(snotel)
+```
+
+#### 1. (2 pts)
+Assume we want to estimate the SWE across Montana (on April 12th, 2025) while exploring the impact of elevation, latitude, and longitude. Write out the statistical model to answer this question. Note: you can assume an additive, linear relationships is a reasonable starting point.
+
+
+#### 2. (4 pts)
+
+State and justify prior distributions for the parameters in this model. For this justification, you should discuss the parameters in the prior distribution (hyperparameters). Plot the prior distributions that you have chosen.
+
+#### 3. (4 pts)
+
+Create a series of plots that explore the relationship between swe and our three covariates: elevation, latitude, and longitude. Include all data points and comment on your findings.
+
+
+#### 4. (4 pts)
+Using the priors above fit the model in JAGS. Include a numerical summary of your model output that includes all relevant priors.
+
+
+
+#### 5.  (4 pts)
+
+Print and interpret an HDI for all model parameters. Include a paragraph detailing the results.
+
+
+#### 6. (4 pts)
+
+Compute the posterior predictive distribution for swe at boat launch at Hyalite Reservoir (6704 feet, 45.48225 latitude, -110.96855 longitude) and create a figure of this distribution.
+
+
+#### 7. (4 pts)
+Summarize the results from parts d and e for your roommate who loves to go ski touring.
+
+#### 8. 
+
+Assume a simple additive linear model with elevation, latitude, and longitude has been used to calculate the swe for Montana Hall (elevation = 4794, latitude = 45.67, longitude = -111.05). However, unfortunately the model returns a 68% probability that the SWE is less than 0 inches.
+
+##### 8.1 (4 points)
+Propose a solution to this problem, write out the statistical model + priors that you will be using.
+
+##### 8.2 (4 points)
+Implement your solution. Include JAGS code and summary output.
+
+##### 8.2 (4 points)
+Create a posterior predictive distribution for SWE at both Hyalite and Montana Hall. Plot the posterior predictive distributions.
+
+#### 9. (1 point)
+
+We will have one "bonus" lecture on the last day of class. What topics would you be interested in learning about?
