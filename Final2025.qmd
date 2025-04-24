@@ -52,7 +52,7 @@ Compute the posterior predictive distribution for swe at boat launch at Hyalite 
 
 
 #### 7. (4 pts)
-Summarize the results from parts d and e for your roommate who loves to go ski touring.
+Summarize the results from parts 5 and 6 for your roommate who loves to go ski touring.
 
 #### 8. 
 
